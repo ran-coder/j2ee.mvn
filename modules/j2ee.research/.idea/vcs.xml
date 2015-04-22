@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="VcsDirectoryMappings">
+    <mapping directory="" vcs="svn" />
+    <mapping directory="$APPLICATION_HOME_DIR$/IdeaProjects/j2ee.mvn/modules/j2ee.nio" vcs="svn" />
+    <mapping directory="$APPLICATION_HOME_DIR$/IdeaProjects/j2ee.mvn/modules/j2ee.utils" vcs="svn" />
+  </component>
+</project>
+

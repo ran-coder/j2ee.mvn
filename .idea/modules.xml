@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/modules/j2ee.nio/j2ee.nio.iml" filepath="$PROJECT_DIR$/modules/j2ee.nio/j2ee.nio.iml" />
+      <module fileurl="file://$PROJECT_DIR$/modules/j2ee.orm/j2ee.orm.iml" filepath="$PROJECT_DIR$/modules/j2ee.orm/j2ee.orm.iml" />
+      <module fileurl="file://$PROJECT_DIR$/modules/j2ee.research/j2ee.research.iml" filepath="$PROJECT_DIR$/modules/j2ee.research/j2ee.research.iml" />
+      <module fileurl="file://$PROJECT_DIR$/modules/j2ee.search/j2ee.search.iml" filepath="$PROJECT_DIR$/modules/j2ee.search/j2ee.search.iml" />
+      <module fileurl="file://$PROJECT_DIR$/modules/j2ee.server/j2ee.server.iml" filepath="$PROJECT_DIR$/modules/j2ee.server/j2ee.server.iml" />
+      <module fileurl="file://$PROJECT_DIR$/modules/j2ee.utils/j2ee.utils.iml" filepath="$PROJECT_DIR$/modules/j2ee.utils/j2ee.utils.iml" />
+    </modules>
+  </component>
+</project>

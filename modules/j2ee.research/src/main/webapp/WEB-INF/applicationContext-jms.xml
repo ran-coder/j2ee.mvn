@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:amq="http://activemq.org/config/1.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans-2.0.xsd
+	http://activemq.org/config/1.0 classpath:META-INF/activemq-core-4.1.2.xsd">
+ -->
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:amq="http://activemq.apache.org/schema/core"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd
+  http://activemq.apache.org/schema/core http://activemq.apache.org/schema/core/activemq-core.xsd">
+
+
+	<!-- Allows us to use system properties as variables in this configuration file <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer"/> -->
+	<!-- Server configure -->
+	<!-- create an embedded ActiveMQ Broker -->
+	<amq:broker useJmx="false" persistent="false">
+		<amq:transportConnectors>
+			<amq:transportConnector uri="tcp://localhost:62626" />
+		</amq:transportConnectors>
+	</amq:broker>
+	<!-- ActiveMQ connectionFactory to use -->
+	<amq:connectionFactory id="jmsConnectionFactory" brokerURL="vm://localhost" />
+	<!-- destination -->
+	<amq:queue name="destination" physicalName="org.apache.activemq.spring.Test.spring.embedded" />
+	<bean id="messageConverter" class="j2ee.research.fw.activemq.com.fltrp.activemq.converter.CoverterHolder">
+		<property name="defaultMessageConverter">
+			<bean class="j2ee.research.fw.activemq.com.fltrp.activemq.converter.DefaultMessageConverter" />
+		</property>
+	</bean>
+	<!-- jmstemplate -->
+	<bean id="jmsTemplate" class="org.springframework.jms.core.JmsTemplate">
+		<property name="connectionFactory">
+			<bean class="org.springframework.jms.connection.SingleConnectionFactory">
+				<property name="targetConnectionFactory" ref="jmsConnectionFactory" />
+			</bean>
+		</property>
+		<property name="messageConverter" ref="messageConverter" />
+	</bean>
+
+	<!-- pojo -->
+	<bean id="messageListener" class="org.springframework.jms.listener.adapter.MessageListenerAdapter">
+		<constructor-arg>
+			<bean class="j2ee.research.fw.activemq.com.fltrp.activemq.consumer.MessageConsumerAdapter">
+				<!-- <property name="myConsumer" ref="myConsumer" /> -->
+				<property name="consumerMap">
+					<map>
+						<entry key="refereeGiftOrderConsumer" value-ref="refereeGiftOrderConsumer" />
+						<entry key="defaultConsumer" value-ref="defaultConsumer" />
+					</map>
+				</property>
+			</bean>
+		</constructor-arg>
+		<!-- may be other method -->
+		<property name="defaultListenerMethod" value="onMessage" />
+		<!-- custom MessageConverter define -->
+		<property name="messageConverter" ref="messageConverter" />
+	</bean>
+	<bean id="listenerContainer" class="org.springframework.jms.listener.DefaultMessageListenerContainer">
+		<property name="connectionFactory" ref="jmsConnectionFactory" />
+		<property name="destination" ref="destination" />
+		<property name="messageListener" ref="messageListener" />
+	</bean>
+
+	<!-- producer -->
+	<bean id="mailMessageProducer" class="j2ee.research.fw.activemq.com.fltrp.activemq.producer.MailMessageProducer"/>
+	<bean id="mailMessageConsumer" class="j2ee.research.fw.activemq.com.fltrp.activemq.consumer.MailMessageConsumer" autowire="byName"/>
+	<bean id="refereeGiftOrderConsumer" class="j2ee.research.fw.activemq.com.fltrp.activemq.consumer.RefereeGiftOrderConsumer" autowire="byName"/>
+	<bean id="defaultProducer" class="j2ee.research.fw.activemq.com.fltrp.activemq.producer.DefaultProducer" autowire="byName"/>
+	<bean id="defaultConsumer" class="j2ee.research.fw.activemq.com.fltrp.activemq.consumer.DefaultConsumer" autowire="byName"/>
+
+</beans>

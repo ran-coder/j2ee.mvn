@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<digester-rules>
+	<pattern value="plays/play">
+		<object-create-rule classname="xml.digester.Play" />
+		<set-next-rule methodname="add" paramtype="java.lang.Object" />
+		<set-properties-rule />
+		<bean-property-setter-rule pattern="name" />
+		<bean-property-setter-rule pattern="summary" />
+		<bean-property-setter-rule pattern="author" />
+
+		<!-- Nested Pattern for Characters -->
+		<pattern value="characters/character">
+			<object-create-rule classname="xml.digester.Character" />
+			<set-next-rule methodname="addCharacter"
+				paramtype="xml.digester.Character" />
+			<set-properties-rule />
+			<bean-property-setter-rule pattern="name" />
+			<bean-property-setter-rule pattern="descr"
+				propertyname="description" />
+		</pattern>
+
+	</pattern>
+</digester-rules>

@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Maven: commons-threadpool:commons-threadpool:20030513.073905">
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/commons-threadpool/commons-threadpool/20030513.073905/commons-threadpool-20030513.073905.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$MAVEN_REPOSITORY$/commons-threadpool/commons-threadpool/20030513.073905/commons-threadpool-20030513.073905-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$MAVEN_REPOSITORY$/commons-threadpool/commons-threadpool/20030513.073905/commons-threadpool-20030513.073905-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

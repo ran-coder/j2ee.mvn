@@ -1,0 +1,30 @@
+<build>
+    <outputDirectory>src/main/webapp/WEB-INF/classes</outputDirectory>
+    <testOutputDirectory>src/main/webapp/WEB-INF/classes</testOutputDirectory>
+    <plugins>
+        <plugin>
+            <artifactId>maven-antrun-plugin</artifactId>
+            <executions>
+                <execution>
+                    <id>copy-lib-src-webapps</id>
+                    <phase>package</phase>
+                    <configuration>
+                        <tasks>
+                            <delete dir="src/main/webapp/WEB-INF/lib" />
+                            <copy todir="src/main/webapp/WEB-INF/lib">
+                                <fileset dir="target/sem-tools-0.1/WEB-INF/lib">
+                                    <include name="*" />
+                                </fileset>
+                            </copy>
+                        </tasks>
+                    </configuration>
+                    <goals>
+                        <goal>run</goal>
+                    </goals>
+                </execution>
+            </executions>
+        </plugin>
+    </plugins>
+</build>
+webRoot设置为src/main/webapp
+这样只需要在依赖有变化时package一次

@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Maven: commons-compress:commons-compress:20050911">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.m2/repository/commons-compress/commons-compress/20050911/commons-compress-20050911.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$USER_HOME$/.m2/repository/commons-compress/commons-compress/20050911/commons-compress-20050911-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.m2/repository/commons-compress/commons-compress/20050911/commons-compress-20050911-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:context="http://www.springframework.org/schema/context" xmlns:tx="http://www.springframework.org/schema/tx" xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.0.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
+		http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.0.xsd
+		">
+	<bean id="collectionBean" class="j2ee.research.spring.example.collection.CollectionBean" >
+		<!-- set -->
+		<property name="sets">
+			<set>
+				<value>赵薇</value>
+				<value>林心如</value>
+				<value>李宇春</value>
+				<value>苏有朋</value>
+				<value>范冰冰</value>
+			</set>
+		</property>
+		<!-- list -->
+		<property name="users">
+			<list>
+				<ref bean="u1"/>
+				<ref bean="u2"/>
+				<ref bean="u3"/>
+				<ref bean="u4"/>
+				<ref bean="u5"/>
+				<bean class="www.csdn.spring1.collection.User" >
+					<property name="name" value="唐嫣"/>
+					<property name="age" value="27"/>
+				</bean>
+			</list>
+		</property>
+		<!-- map -->
+		<property name="map">
+			<map>
+				<entry key="1" value-ref="u1"/>
+				<entry key="2" ref="u2"/>
+				</entry>
+				<entry key="3" value-ref="u3"/>
+				<entry key="4" value-ref="u4"/>
+				<entry key="5" value-ref="u5"/>
+			</map>
+		</property>
+		<property name="props">
+			<props>
+				<prop key="1">zhangsan</prop>
+				<prop key="2">lisi</prop>
+				<prop key="3">wangwu</prop>
+			</props>
+		</property>
+	</bean>
+	<bean id="u1" class="www.csdn.spring1.collection.User" >
+		<property name="name" value="薛双双"/>
+		<property name="age" value="20"/>
+	</bean>
+	<bean id="u2" class="www.csdn.spring1.collection.User" >
+		<property name="name" value="xueshuangshuang"/>
+		<property name="age" value="21"/>
+	</bean>
+	<bean id="u3" class="www.csdn.spring1.collection.User" >
+		<property name="name" value="双双"/>
+		<property name="age" value="20"/>
+	</bean>
+	<bean id="u4" class="www.csdn.spring1.collection.User" >
+		<property name="name" value="唐嫣"/>
+		<property name="age" value="27"/>
+	</bean>
+	<bean id="u5" class="www.csdn.spring1.collection.User" >
+		<property name="name" value="魏晨"/>
+		<property name="age" value="20"/>
+	</bean>
+</beans>

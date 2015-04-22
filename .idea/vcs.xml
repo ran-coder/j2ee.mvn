@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="VcsDirectoryMappings">
+    <mapping directory="" vcs="svn" />
+    <mapping directory="$PROJECT_DIR$" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/modules/j2ee.nio" vcs="svn" />
+    <mapping directory="$PROJECT_DIR$/modules/j2ee.orm" vcs="svn" />
+    <mapping directory="$PROJECT_DIR$/modules/j2ee.research" vcs="svn" />
+    <mapping directory="$PROJECT_DIR$/modules/j2ee.search" vcs="svn" />
+    <mapping directory="$PROJECT_DIR$/modules/j2ee.server" vcs="svn" />
+    <mapping directory="$PROJECT_DIR$/modules/j2ee.utils" vcs="svn" />
+  </component>
+</project>

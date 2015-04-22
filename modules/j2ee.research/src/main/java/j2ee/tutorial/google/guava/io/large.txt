@@ -1,0 +1,130 @@
+<%@ include file="/common/taglibs.jsp"%>
+<%@ page language="java" errorPage="/error.jsp" pageEncoding="UTF-8" contentType="text/html; charset=utf-8"
+%>
+<jsp:include flush="true" page="/scripts/jquery1.4.2.jsp" />
+
+<link rel="stylesheet" type="text/css" media="all" href="<c:url value='/styles/${appConfig["csstheme"]}/theme.css'/>" />
+<link rel="stylesheet" type="text/css" href="<c:url value='/styles/ui/cupertino/jquery-ui-1.8.custom.css'/>" />
+<link rel="stylesheet" type="text/css" href="<c:url value='/styles/commonlayout.css'/>" />
+
+<questionnaire:constants scope="request"/>
+<script type="text/javascript"><!--
+/*$.validator.setDefaults({
+	submitHandler: function() {
+		//alert("submitted!");
+		$(this)[0].submit();
+	}
+});
+*/
+//$.metadata.setType("attr", "validate");
+
+$(document).ready(function(){
+	$(".paperForm").validate();
+	$(".submitButton").click(function(){
+		if($(".paperForm").valid()){
+			document.paperForm.submit();
+		}
+	});
+});
+
+</script>
+<style>
+	div.main{text-align: center;}
+	ul#question{list-style-type:decimal;text-align: left;width:800px;}
+	ul#question textarea{width: 100%; height: 200px;}
+	ul#question li{width: 100%;float:left;margin:0;line-height:0.7em;}
+	ul#question ul.option{list-style-type:upper-latin;}
+	ul#question ul.option li{width:200px;list-style-type:upper-alpha;}
+	ul#question ul.option li *{margin-left: -5px;text-align:center;vertical-align:middle;}
+	label.error,label.validate{color:red;}
+	ul#question ul.option li label.error{display: block;float: right;padding-right: 20px;}
+	.block{display: block;}
+
+</style>
+<title>问卷|${paper.subject}</title>
+<input  type="button" class="uibutton submitButton" value="提交"/>
+<input  type="button" class="uibutton" onclick="return false;" value="导出Word"/>
+<input  type="button" class="uibutton" onclick="return false;" value="导出HTML"/>
+<input  type="button" class="uibutton" onclick="document.location.href='papers.html';return false;" value="返回"/>
+
+<div id="msg">${questionnaireError}</div>
+<div class='main'>
+	<h1>${paper.subject}</h1>
+	<ul id="question"><!-- 1 单选题	2 多选题	3 简答题	4 填空题	5 组合题 -->
+		<form action="ajax_editAnswer.html?action=saveAnswer" method="post" name="paperForm" class='paperForm'>
+		<table>
+			<tr>
+				<td>答卷人</td>
+				<td><input type="text" id="respondent" name="respondent" class="medium required"/></td>
+				<td>答卷时间</td>
+				<td><input id="answerTime" name="answerTime" class="small datepicker"/></td>
+				<td>结果</td>
+				<td><input id="result" name="result" class="text medium"/></td>
+			</tr>
+			<tr>
+				<td>手机号</td>
+				<td><input name="respondentsMobile" id="respondentsMobile" class="text medium required mobile"/></td>
+				<td>性别</td>
+				<td>
+					<select name="respondentsGender">
+						<option value="0">男</option>
+						<option value="1">女</option>
+					</select>
+				</td>
+				<td>答卷有效性</td>
+				<td>
+					<select name="status">
+						<option value="1">有效</option>
+						<option value="0">无效</option>
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<td>E-Mail</td>
+				<td><input name="respondentsEmail" id="respondentsEmail" class="text medium"/></td>
+				<td>被调查人姓名</td>
+				<td><input name="target" id="target" class="text medium"/></td>
+				<td>省份</td>
+				<td><input name="province" id="province" class="text medium"/></td>
+			</tr>
+			<tr>
+				<td>城市</td>
+				<td><input name="city" id="city" class="text medium"/></td>
+				<td>地区</td>
+				<td><input name="domain" id="domain" class="text medium"/></td>
+				<td></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td><input type="hidden" name="paperId" value="${paper.paperId}"/></td>
+			</tr>
+		</table>
+		<c:forEach var="current" items="${paper.sortList}">
+			<li questionType=${current.question.questionType} class='question${current.question.questionId}'>
+				${current.question.subject}<c:if test="${current.validate}"><!-- <label class='validate'>(*)</label> --></c:if>
+				<c:if test="${current.question.questionType==6}">
+					<br/><textarea id="option${current.question.questionId}" name="${current.question.questionId}" class='${current.validateContent}'></textarea>
+				</c:if>
+				<c:if test="${current.question.questionType==3||current.question.questionType==4}">
+					<input id="option${current.question.questionId}" type="text" name="${current.question.questionId}" class='${current.validateContent}'/>
+				</c:if>
+				<c:if test="${current.question.questionType==1 || current.question.questionType==2 }">
+					<ul class="option">
+					<c:forEach var="option" items="${current.question.options}">
+						<li><input class='${current.validateContent}' <c:if test="${current.question.questionType==1}">type="radio"</c:if>
+									<c:if test="${current.question.questionType==2}">type="checkbox"</c:if>
+							id="option${current.question.questionId}-${option.optionId}" name="${current.question.questionId}" value="${option.optionId}"/>
+								<label for="option${current.question.questionId}-${option.optionId}">${option.optionContent}</label>
+						</li>
+					</c:forEach>
+					</ul>
+				</c:if>
+			</li>
+		</c:forEach>
+			<li>开放性问题
+				<input type="file" class='file'>
+			</li>
+		</form>
+	</ul>
+
+</div>

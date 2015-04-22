@@ -1,0 +1,92 @@
+<?xml version='1.0' encoding='ISO-8859-1' ?>
+<!DOCTYPE log4j:configuration SYSTEM "file:./log4j.dtd">
+<log4j:configuration>
+	<appender name="CONSOLE" class="org.apache.log4j.ConsoleAppender">
+		<param name="target" value="System.out" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d{HH:mm:ss.SSS} [%c] %-5p: %.256m%n" />
+		</layout>
+		<filter class="org.apache.log4j.varia.LevelRangeFilter">
+			<param name="LevelMin" value="INFO" />
+		</filter>
+	</appender>
+	<appender name="debug" class="org.apache.log4j.ConsoleAppender">
+		<param name="target" value="System.out" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d{HH:mm:ss.SSS} %c{1}.%M(%L) %m%n" />
+		</layout>
+	</appender>
+	<appender name="debug-red" class="org.apache.log4j.ConsoleAppender">
+		<param name="target" value="System.err" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d{HH:mm:ss.SSS} %c{1}.%M(%L) %m%n" />
+		</layout>
+	</appender>
+	<appender name="System.err" class="org.apache.log4j.ConsoleAppender">
+		<param name="target" value="System.err" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%t %d{HH:mm:ss} %c{1}.%M(%L) %m%n" />
+		</layout>
+	</appender>
+	<appender name="mina" class="org.apache.log4j.ConsoleAppender">
+		<param name="target" value="System.err" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="[%d{HH:mm:ss}] %t %p %X{name} [%X{user}] [%X{remoteAddress}] [%c] - %m%n" />
+		</layout>
+	</appender>
+	<appender name="CONSOLE-WARN" class="org.apache.log4j.ConsoleAppender">
+		<param name="target" value="System.err" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="[%7r] %6p - %30.30c - %m \n" />
+		</layout>
+		<filter class="org.apache.log4j.varia.LevelRangeFilter">
+			<param name="LevelMin" value="WARN" />
+		</filter>
+	</appender>
+	<appender name="CONSOLE-DEBUG" class="org.apache.log4j.ConsoleAppender">
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="[%7r] %6p - %30.30c - %m \n" />
+		</layout>
+		<filter class="org.apache.log4j.varia.LevelRangeFilter">
+			<param name="LevelMin" value="DEBUG" />
+			<param name="LevelMax" value="DEBUG" />
+		</filter>
+	</appender>
+	<appender name="CONSOLE-ALL" class="org.apache.log4j.ConsoleAppender">
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="[%7r] %6p - %30.30c - %m \n" />
+		</layout>
+	</appender>
+	<appender name="DIALOG" class="com.intellij.diagnostic.DialogAppender">
+	</appender>
+	<appender name="FILE" class="org.apache.log4j.RollingFileAppender">
+		<param name="MaxFileSize" value="1Mb" />
+		<param name="MaxBackupIndex" value="3" />
+		<param name="file" value="$SYSTEM_DIR$/log/idea.log" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d [%7r] %6p - %30.30c - %m \n" />
+		</layout>
+	</appender>
+	<logger name="nio.mina" additivity="false">
+		<level value="debug" />
+		<appender-ref ref="debug" />
+	</logger>
+	<logger name="org.apache.mina.filter.statistic" additivity="false">
+		<level value="DEBUG" />
+		<appender-ref ref="System.err" />
+	</logger>
+	<logger name="org.apache.mina" additivity="false">
+		<level value="INFO" />
+		<appender-ref ref="mina" />
+	</logger>
+	<logger name="org.jboss.netty.example" additivity="false"><level value="debug" /><appender-ref ref="debug" /></logger>
+	<logger name="org.jboss.netty" additivity="false"><level value="debug" /><appender-ref ref="CONSOLE" /></logger>
+	<logger name="nio.netty" additivity="false"><level value="debug" /><appender-ref ref="debug" /></logger>
+	<root>
+		<priority value="INFO" />
+		<appender-ref ref="CONSOLE" />
+		<!-- <appender-ref ref="DIALOG"/> -->
+		<!-- <appender-ref ref="CONSOLE-WARN"/> -->
+		<!-- <appender-ref ref="FILE"/> -->
+	</root>
+</log4j:configuration>

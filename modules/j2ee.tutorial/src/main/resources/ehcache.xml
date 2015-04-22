@@ -1,0 +1,17 @@
+<ehcache xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="ehcache.xsd">
+	<diskStore path="java.io.tmpdir" />
+	<defaultCache maxElementsInMemory="10000" eternal="false" timeToIdleSeconds="120" timeToLiveSeconds="120" overflowToDisk="true"
+		diskPersistent="false" diskExpiryThreadIntervalSeconds="120" memoryStoreEvictionPolicy="LRU" />
+	<cache name="j2ee.spring.v2.domain.User" maxElementsInMemory="100" eternal="false" overflowToDisk="false" timeToIdleSeconds="10"
+		timeToLiveSeconds="20" memoryStoreEvictionPolicy="LFU" />
+	<cache name="j2ee.spring.v2.domain.User.roles" maxElementsInMemory="100" eternal="false" overflowToDisk="false" timeToIdleSeconds="10"
+		timeToLiveSeconds="20" memoryStoreEvictionPolicy="LFU" />
+	<cache name="j2ee.spring.v2.domain.Role" maxElementsInMemory="10000" eternal="false" timeToIdleSeconds="10" timeToLiveSeconds="20"
+		overflowToDisk="true" />
+
+	<!-- See http://ehcache.sourceforge.net/documentation/#mozTocId258426 for how to configure caching for your objects -->
+	<!-- acegi cache-->
+	<cache name="userCache" maxElementsInMemory="10000" eternal="true" overflowToDisk="true" />
+	<!-- acegi cache-->
+	<cache name="resourceCache" maxElementsInMemory="10000" eternal="true" overflowToDisk="true" />
+</ehcache>

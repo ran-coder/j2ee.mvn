@@ -1,0 +1,8 @@
+$username
+$latestProductUrl
+$!latestProductName null不显示
+
+#set( $latestProductName = "中文" )
+\$!latestProductName $!latestProductNam 注释掉,不翻译
+\\$!latestProductName \中文
+\\\$!latestProductName \$!latestProductName

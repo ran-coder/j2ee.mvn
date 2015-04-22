@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Maven: javax.inject:inject-api:1.0.0-PRD">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.m2/repository/javax/inject/inject-api/1.0.0-PRD/inject-api-1.0.0-PRD.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$USER_HOME$/.m2/repository/javax/inject/inject-api/1.0.0-PRD/inject-api-1.0.0-PRD-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.m2/repository/javax/inject/inject-api/1.0.0-PRD/inject-api-1.0.0-PRD-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

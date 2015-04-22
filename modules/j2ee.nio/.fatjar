@@ -1,0 +1,14 @@
+#Fat Jar Configuration File
+#Fri Nov 11 10:06:43 CST 2011
+onejar.license.required=false
+manifest.classpath=
+manifest.removesigners=true
+onejar.checkbox=false
+jarname=D\:\\Server\\lib\\me\\j2ee.nio_fat.jar
+manifest.mergeall=true
+manifest.mainclass=
+manifest.file=<createnew>
+jarname.isextern=true
+onejar.expand=
+excludes=
+includes=

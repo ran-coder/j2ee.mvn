@@ -1,0 +1,103 @@
+#macro(page $totalCount $start $limit $formId)
+	#set($istart = 0)
+	#set($ilimit = 15)
+	
+	#if($!totalCount == '')
+		a1
+		#set( $totalCount = 0)
+	#else
+		b1
+		#set( $totalCount = $number.toNumber( $totalCount))
+	#end
+	
+	#if($!start == '')
+		a2
+		#set($start = 1)
+	#else
+		b2
+		#set($start = $number.toNumber( $start))
+	#end
+	
+    #if($!limit == '') 
+		a3
+		#set($limit = 15 )
+	#else
+		b3
+		#set($limit = $number.toNumber( $limit))
+	#end
+
+	##计算当前页
+	#set($istart = $start - 1)
+	#set($ilimit = $limit)
+	#set($currentPage = $istart / $limit + 1)
+
+	#set($pageSize = $limit)##limit即为每页显示的条数
+	
+	#set($pageSize = $number.toNumber($limit))
+	
+	#set($offset = 2)
+	## 计算总页数
+    #if($totalCount % $pageSize > 0)
+		a4
+        #set($pageCount = ($totalCount / $pageSize) + 1)
+    #else
+		b4
+        #set($pageCount = ($totalCount / $pageSize))
+	#end
+	
+	#set($page = 5)##
+	#set($maxpage = 10)
+	#set($realpages = 1)
+	#if($!totalCount > 0)
+        <div class="page">
+    		#if($page > $pageCount)
+				a5
+    			#set($from = 1)
+    			#set($to = $pageCount)
+    		#else
+				b5
+    			#set($from = $currentPage - $offset)
+    			#set($to = $from + $page - 1)
+    			#if($from < 1)
+    				#set($from = 1)
+    				#set($to = $page)
+    			#elseif($to > $pageCount)
+    				#set($from = $pageCount - $page + 1)
+    				#set($to = $pageCount)
+    			#end
+			#end
+			
+			#set($from = $number.toNumber($from))
+			#set($to = $number.toNumber($to))
+    		
+    		#if($currentPage - $offset > 1 && $pageCount > $page)
+    			<a href="javascript:void(0);" onclick="pageIndexClick(1,$limit,$totalCount,$formId);" class="first">1 ...</a>
+    		#end
+    		
+    		#if($currentPage > 1)
+				#set($startTemp = ($currentPage - 2) * $limit + 1)
+    			<a href="javascript:void(0);" onclick="pageIndexClick($startTemp,$limit,$totalCount,$formId);" class="prev">&lsaquo;&lsaquo;</a>
+			#end
+    		#foreach($idx in [$from .. $to])
+				11111111
+        		#if($idx == $currentPage)
+        			<strong>$idx</strong>
+        		#else
+					#set($startTemp = ($idx - 1) * $limit + 1)
+        			<a href="javascript:void(0);" onclick="pageIndexClick($startTemp,$limit,$totalCount,$formId);">$idx</a>
+        		#end
+    		#end
+    		
+    		#if($currentPage < $pageCount)
+				#set($startTemp = $currentPage * $limit + 1)
+    			<a href="javascript:void(0);" onclick="pageIndexClick($startTemp,$limit,$totalCount,$formId);" class="next">&rsaquo;&rsaquo;</a>
+    		#end
+    		
+    		#if($to <$pageCount)
+				#set($startTemp = ($pageCount - 1) * $limit + 1)
+    			<a href="javascript:void(0);" onclick="pageIndexClick($startTemp,$limit,$totalCount,$formId);" class="last">... $!pageCount</a>
+    		#end
+    		<em>共 $!totalCount 条记录</em>
+    	</div>
+	#end
+#end

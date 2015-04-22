@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$APPLICATION_HOME_DIR$/IdeaProjects/j2ee.mvn/modules/j2ee.nio/j2ee.nio.iml" filepath="$APPLICATION_HOME_DIR$/IdeaProjects/j2ee.mvn/modules/j2ee.nio/j2ee.nio.iml" />
+      <module fileurl="file://$APPLICATION_HOME_DIR$/IdeaProjects/j2ee.mvn/modules/j2ee.utils/utils.iml" filepath="$APPLICATION_HOME_DIR$/IdeaProjects/j2ee.mvn/modules/j2ee.utils/utils.iml" />
+    </modules>
+  </component>
+</project>
+
