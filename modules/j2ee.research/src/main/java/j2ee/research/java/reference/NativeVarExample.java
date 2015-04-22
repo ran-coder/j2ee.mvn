@@ -10,10 +10,10 @@ import java.util.Arrays;
  */
 public class NativeVarExample{
 	public static void change(char[] chars){
-		chars[0]='A';
+		chars[0]='A';//会变
 	}
 	public static void change(char ch){
-		ch='A';
+		ch='A';//不会变
 	}
 
 	public static void main(String[] args){
