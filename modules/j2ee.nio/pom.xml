@@ -35,7 +35,7 @@
 		<!--<netty.version>3.2.9.Final</netty.version>-->
 		<netty.version>3.8.0.Final</netty.version>
 		<!--<io.netty.version>3.5.8.Final</io.netty.version>-->
-		<io.netty.version>4.0.12.Final</io.netty.version>
+		<io.netty.version>4.1.42.Final</io.netty.version>
 		<j2ee.utils>1.0.0</j2ee.utils>
 	</properties>
 	<dependencies>
